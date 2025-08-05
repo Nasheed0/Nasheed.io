@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nasheed.io</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0fdf4;
+      color: #065f46;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #15803d;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #a7f3d0;
+      background-color: #d1fae5;
+      font-size: 16px;
+    }
+    .vakit {
+      background-color: #bbf7d0;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .language-btn {
+      background-color: #4ade80;
+      color: #065f46;
+      margin-top: 15px;
+    }
+    .alert {
+      background-color: #f87171;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      display: none;
+    }
+    .hadis-dua {
+      background-color: #ecfccb;
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">🕌 Nasheed.io</h1>
+
+    <label id="select-city-label">Şehir Seç:</label>
+    <select id="city">
+      <option>Antalya</option>
+      <option>İstanbul</option>
+      <option>Ankara</option>
+      <option>İzmir</option>
+      <option>Bursa</option>
+    </select>
+
+    <label id="select-town-label">İlçe Seç:</label>
+    <select id="town">
+      <option>Kepez</option>
+      <option>Muratpaşa</option>
+      <option>Konyaaltı</option>
+    </select>
+
+    <div class="vakit" id="imsak">İmsak: 04:37</div>
+    <div class="vakit" id="gunes">Güneş: 06:10</div>
+    <div class="vakit" id="ogle">Öğle: 13:04</div>
+    <div class="vakit" id="ikindi">İkindi: 16:45</div>
+    <div class="vakit" id="aksam">Akşam: 19:48</div>
+    <div class="vakit" id="yatsi">Yatsı: 21:14</div>
+
+    <div class="alert" id="alert">🕋 Namaz vakti geldi!</div>
+
+    <button class="language-btn" onclick="toggleLanguage()">🇹🇷 Türkçe / Arabic 🇸🇦</button>
+
+    <div class="hadis-dua" id="daily">
+      Hadis: "Namaz dinin direğidir." (Tirmizi)
+    </div>
+  </div>
+
+  <script>
+    let lang = 'tr';
+
+    const translations = {
+      tr: {
+        title: "🕌 Nasheed.io",
+        imsak: "İmsak",
+        gunes: "Güneş",
+        ogle: "Öğle",
+        ikindi: "İkindi",
+        aksam: "Akşam",
+        yatsi: "Yatsı",
+        selectCity: "Şehir Seç:",
+        selectTown: "İlçe Seç:",
+        alert: "🕋 Namaz vakti geldi!",
+        hadis: [
+          "Namaz dinin direğidir. (Tirmizi)",
+          "Temizlik imandandır. (Müslim)",
+          "Bir iyilik eden, karşılığını bulur. (Zümer 34)",
+          "Kolaylaştırınız, zorlaştırmayınız. (Buhari)"
+        ]
+      },
+      ar: {
+        title: "🕌 نشيد.آي.او",
+        imsak: "الفجر",
+        gunes: "الشروق",
+        ogle: "الظهر",
+        ikindi: "العصر",
+        aksam: "المغرب",
+        yatsi: "العشاء",
+        selectCity: "اختر المدينة:",
+        selectTown: "اختر المنطقة:",
+        alert: "🕋 حان وقت الصلاة!",
+        hadis: [
+          "الصلاة عماد الدين. (الترمذي)",
+          "النظافة من الإيمان. (مسلم)",
+          "من يعمل مثقال ذرة خيرا يره. (الزمر 34)",
+          "يسروا ولا تعسروا. (البخاري)"
+        ]
+      }
+    };
+
+    function toggleLanguage() {
+      lang = lang === 'tr' ? 'ar' : 'tr';
+      const t = translations[lang];
+      document.getElementById("title").innerText = t.title;
+      document.getElementById("imsak").innerText = t.imsak + ": 04:37";
+      document.getElementById("gunes").innerText = t.gunes + ": 06:10";
+      document.getElementById("ogle").innerText = t.ogle + ": 13:04";
+      document.getElementById("ikindi").innerText = t.ikindi + ": 16:45";
+      document.getElementById("aksam").innerText = t.aksam + ": 19:48";
+      document.getElementById("yatsi").innerText = t.yatsi + ": 21:14";
+      document.getElementById("select-city-label").innerText = t.selectCity;
+      document.getElementById("select-town-label").innerText = t.selectTown;
+      document.getElementById("alert").innerText = t.alert;
+      const hadis = t.hadis[Math.floor(Math.random() * t.hadis.length)];
+      document.getElementById("daily").innerText = "📖 " + hadis;
+    }
+
+    setTimeout(() => {
+      document.getElementById("alert").style.display = 'block';
+    }, 5000);
+  </script>
+</body>
+</html>
